@@ -24,10 +24,9 @@ WORKDIR /home/app
 
 COPY --chown=app --from=builder /home/node/next.config.js ./
 COPY --chown=app --from=builder /home/node/public ./public
-COPY --chown=app --from=builder /home/node/package.json .
-COPY --chown=app --from=builder /home/node/node_modules ./node_modules
-COPY --chown=app --from=builder /home/node/.next ./.next
+COPY --chown=app --from=builder /home/node/.next/standalone ./
+COPY --chown=app --from=builder /home/node/.next/static ./.next/static
 
 EXPOSE 3000
 
-CMD ["node_modules/.bin/next", "start"]
+CMD ["node", "server.js"]
